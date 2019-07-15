@@ -9,7 +9,7 @@
 convert fisheye image to dewarpped image
 
 ## Theory
-![transformation](README_img\entire_transformation.jpg)
+![transformation](README_img/entire_transformation.jpg)
 
 0. constants  
 x_c, y_c = center of lens  
@@ -23,7 +23,7 @@ image coordinate sys.
 fisheye circle(uv) is moved to xz plane in spherical.  
 
 **inside the fisheye circle**  
-![eq1](README_img\eq1.png) ← IF condition
+![eq1](README_img/eq1.png) ← IF condition
 
 
 2. spherical(xyz) → logitude/latitude
