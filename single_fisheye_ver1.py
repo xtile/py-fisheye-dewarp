@@ -10,7 +10,7 @@ from PIL import Image
 import numpy as np
 import math
 
-def single_fisheye(PathIn, center, radius, aperture):
+def single_fisheye(PathIn, center, radius, aperture, out_pixel):
 
     # read fisheye image
     ## shape of 'img' array = N×N×3 (row×col×channel)
@@ -20,10 +20,8 @@ def single_fisheye(PathIn, center, radius, aperture):
     # error 
     if (img.shape[0] < center[1]):
         print("wrong Y center")
-        return
     if (img.shape[1] < center[0]):
         print("wrong X center")
-        return
     if(img.shape[0] < center[1] + radius or center[1] - radius < 0):
         print("over Y range")
     if(img.shape[1] < center[0] + radius or center[0] - radius < 0):
@@ -33,7 +31,7 @@ def single_fisheye(PathIn, center, radius, aperture):
 
     # fisheye → spherical(xyz) → equirect(longitude/latitude)
     #equirect = np.zeros(shape=(radius,int(radius*(aperture/180)), 3, ), dtype=np.uint8)
-    equirect = np.zeros(shape=(radius+1,2*radius+1, 3, ), dtype=np.uint8)
+    equirect = np.zeros(shape=(out_pixel+1,2*out_pixel+1, 3, ), dtype=np.uint8)
     print(equirect.shape)
     print("# of loops: ", img.shape[0]*img.shape[1])
     a = 0
@@ -54,8 +52,8 @@ def single_fisheye(PathIn, center, radius, aperture):
                 longitude = math.atan2(y, x)
                 latitude = math.atan2(z, math.sqrt(x**2+y**2))
 
-                latitude = int((latitude/np.pi+0.5)*radius)
-                longitude = int((longitude/np.pi+1)*radius)
+                latitude = int((latitude/np.pi+0.5)*out_pixel)
+                longitude = int((longitude/np.pi+1)*out_pixel)
                 
                 equirect[latitude][longitude] = img[i][j]
                 a=a+1
@@ -67,9 +65,11 @@ def single_fisheye(PathIn, center, radius, aperture):
 
 if __name__ == "__main__":
     start = time.time()
-    result = single_fisheye('./test_image/front.jpg', [1550, 1490], 1520, 190)
+    result = single_fisheye('./test_image/front.jpg', [1550, 1490], 1520, 190, 1024)
     end = time.time() - start
     print("single fisheye image: %d sec" %end)
+
+    Image.fromarray(result).save("./output.jpg")
     
     #phi =  (r / radius) * aperture / 2 # degree
     #theta = math.atan2((i-img.shape[0]/2), (j-img.shape[1]/2)) * (180/ math.pi) # degree
