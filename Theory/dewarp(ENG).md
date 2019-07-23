@@ -48,13 +48,13 @@ In this time, transfer the pixel in the spehre to longitude/latitude coordinate,
 
 <img src="Theory_img/dewarp/equirect_map.jpg"  width="40%"><br>
 
-<img src="Theory_img/dewarp/sphere2equirect.jpg" width="60">
+<img src="Theory_img/dewarp/sphere2equirect.jpg">
 
 But, if you construct your code in this way, there's must be some **black dot areas** that cannot fullly match to fisheye image to longitude/latitude map.  
 
 Because, **it's impossible to make a squre which has equal-area with a circle.** (cf. it is also applied in discret world)
 
-<img src="Theory_img/dewarp/forward_dewarp.jpg" width="50">
+<img src="Theory_img/dewarp/forward_dewarp.jpg">
 
 ## longitude/latitude → spherical → fisheye
 
