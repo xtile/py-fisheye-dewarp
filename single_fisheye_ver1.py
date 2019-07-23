@@ -34,7 +34,6 @@ def single_fisheye(PathIn, center, radius, aperture, out_pixel):
     equirect = np.zeros(shape=(out_pixel+1,2*out_pixel+1, 3, ), dtype=np.uint8)
     print(equirect.shape)
     print("# of loops: ", img.shape[0]*img.shape[1])
-    a = 0
     for i in range(img.shape[0]): # i: y(=v) = row
         for j in range(img.shape[1]): # j: x(=u) = col                                
             r = math.sqrt((j-center[0])**2+(i-center[1])**2)
@@ -56,8 +55,6 @@ def single_fisheye(PathIn, center, radius, aperture, out_pixel):
                 longitude = int((longitude/np.pi+1)*out_pixel)
                 
                 equirect[latitude][longitude] = img[i][j]
-                a=a+1
-                sys.stdout.write("\r" + str(a))
 
     # save dewarpped image
     return equirect
@@ -65,7 +62,8 @@ def single_fisheye(PathIn, center, radius, aperture, out_pixel):
 
 if __name__ == "__main__":
     start = time.time()
-    result = single_fisheye('./test_image/front.jpg', [1550, 1490], 1520, 190, 1024)
+#    result = single_fisheye('./Theory/Theryo_img/dewarp/1024px_Car_Fisheye.jpg', [1550, 1490], 1520, 190, 1024)
+    result = single_fisheye('./Theory/Theory_img/dewarp/1024px_Car_Fisheye.jpg',  [513, 497], 483, 190, 400)
     end = time.time() - start
     print("single fisheye image: %d sec" %end)
 
