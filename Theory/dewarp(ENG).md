@@ -2,7 +2,7 @@
 # Dewarp Fisheye Image.
 
 ## Fisheye Image has Distortion
-<img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/Car_Fisheye.jpg/294px-Car_Fisheye.jpg"  width="80%"> <img src="Theory_img/dewarp/car_dewarp.jpg"  width="80%">
+<img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/Car_Fisheye.jpg/294px-Car_Fisheye.jpg"  width="50%"> <img src="Theory_img/dewarp/car_dewarp.jpg"  width="50%">
 
 
 Fisheye Image always has some distortions and it is severe in the circular edge region. 
@@ -12,7 +12,7 @@ The original fisheye image is circular shape but, we want to dewarp it into rect
 The goal of this document is understand how to convert fisheye image to dewarpped image.
 
 
-<center><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Barrel_distortion.svg/150px-Barrel_distortion.svg.png"  width="70%"></center> 
+<center><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Barrel_distortion.svg/150px-Barrel_distortion.svg.png"  width="40%"></center> 
 
 
 cf) dewarpped fisheye image  has **Barrel distortion**.
@@ -34,19 +34,19 @@ There are two way to generate dewarpped fisheye image.
 ### fisheye(uv) → spherical(xyz)
 fisheye image is a kind of sphere's projection image. So, from fisheye image we can imagine a sphere which has fisheye image as a surface.
 
-<center><img src="Theory_img/dewarp/fisheye2spherical.jpg" width="80%"></center>
+<center><img src="Theory_img/dewarp/fisheye2spherical.jpg" width="60%"></center
 
 The projection between fisheye and sphere is shown below. 
 
-<center><img src="Theory_img/dewarp/fisheye2sphere_eq.jpg"  width="80%"></center>
+<center><img src="Theory_img/dewarp/fisheye2sphere_eq.jpg"  width="60%"></center>
 
 ### spherical(xyz) → longitude/latitude
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Equirectangular_projection_SW.jpg/600px-Equirectangular_projection_SW.jpg"  width="80%">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Equirectangular_projection_SW.jpg/600px-Equirectangular_projection_SW.jpg"  width="60%">
 In this time, transfer the pixel in the spehre to longitude/latitude coordinate, like world map.
 
-<img src="Theory_img/dewarp/sphere.jpg"  width="70%">
+<img src="Theory_img/dewarp/sphere.jpg"  width="50%">
 
-<img src="Theory_img/dewarp/equirect_map.jpg"  width="70%">
+<img src="Theory_img/dewarp/equirect_map.jpg"  width="50%">
 
 
 
