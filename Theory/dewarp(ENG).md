@@ -2,15 +2,18 @@
 # Dewarp Fisheye Image.
 
 ## Fisheye Image has Distortion
-![sample_distortion](https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/Car_Fisheye.jpg/294px-Car_Fisheye.jpg)
-![car_dewarp](Theory_img/dewarp/car_dewarp.jpg)  
+<img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/Car_Fisheye.jpg/294px-Car_Fisheye.jpg"  width="80%"> <img src="Theory_img/dewarp/car_dewarp.jpg"  width="80%">
+
+
 Fisheye Image always has some distortions and it is severe in the circular edge region. 
 
 The original fisheye image is circular shape but, we want to dewarp it into rectangular and blend two fisheye images to equirectangular.
 
 The goal of this document is understand how to convert fisheye image to dewarpped image.
 
-![barrel](https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Barrel_distortion.svg/150px-Barrel_distortion.svg.png)
+
+<center><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Barrel_distortion.svg/150px-Barrel_distortion.svg.png"  width="70%"></center> 
+
 
 cf) dewarpped fisheye image  has **Barrel distortion**.
 
@@ -21,7 +24,7 @@ When dewarp the fisheye image, we use three coordinate system.
 - **longitude/latitude** - (x'', y'')
 
 There are two way to generate dewarpped fisheye image.  
-(1) fisheye → spherical → longitude/latitude
+(1) fisheye → spherical → longitude/latitude  
 (2) longitude/latidue → spherical → fisheye
 
 (Let's think in the unit coordinate system first, and later we'll adjust it to the practical use.)
@@ -29,20 +32,21 @@ There are two way to generate dewarpped fisheye image.
 ## fisheye → spherical → longitude/latitude
 
 ### fisheye(uv) → spherical(xyz)
-fisheye image is a kind of part of sphere's projection. So, from fisheye image we can imagine a sphere which has fisheye image as a surface.
+fisheye image is a kind of sphere's projection image. So, from fisheye image we can imagine a sphere which has fisheye image as a surface.
 
-![fisheye2spherical](Theory_img/dewarp/fisheye2spherical.jpg)  
+<center><img src="Theory_img/dewarp/fisheye2spherical.jpg" width="80%"></center>
+
 The projection between fisheye and sphere is shown below. 
 
-![fisheye2sphere_eq](Theory/Theory_img/ewarp/fisheye2sphere_eq.jpg)
+<center><img src="Theory_img/dewarp/fisheye2sphere_eq.jpg"  width="80%"></center>
 
 ### spherical(xyz) → longitude/latitude
-![world map](https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Equirectangular_projection_SW.jpg/600px-Equirectangular_projection_SW.jpg)  
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Equirectangular_projection_SW.jpg/600px-Equirectangular_projection_SW.jpg"  width="80%">
 In this time, transfer the pixel in the spehre to longitude/latitude coordinate, like world map.
 
-![sphere](Theory_img/dewarp/sphere.jpg) {: width="80" height="80"}  
-![equirect_coord](Theory_img/dewarp/equirect_map.jpg)
+<img src="Theory_img/dewarp/sphere.jpg"  width="70%">
 
+<img src="Theory_img/dewarp/equirect_map.jpg"  width="70%">
 
 
 
