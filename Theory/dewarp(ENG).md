@@ -3,7 +3,7 @@
 
 ## Fisheye Image has Distortion
 ![sample_distortion](https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/Car_Fisheye.jpg/294px-Car_Fisheye.jpg)
-![car_dewarp](/Theory\Theory_img\dewarp\car_dewarp.jpg)  
+![car_dewarp](Theory_img\dewarpdewarp\car_dewarp.jpg)  
 Fisheye Image always has some distortions and it is severe in the circular edge region. 
 
 The original fisheye image is circular shape but, we want to dewarp it into rectangular and blend two fisheye images to equirectangular.
@@ -31,7 +31,7 @@ There are two way to generate dewarpped fisheye image.
 ### fisheye(uv) → spherical(xyz)
 fisheye image is a kind of part of sphere's projection. So, from fisheye image we can imagine a sphere which has fisheye image as a surface.
 
-![fisheye2spherical](/Theory\Theory_img\dewarp\fisheye2spherical.jpg)  
+![fisheye2spherical](Theory_img\dewarp\fisheye2spherical.jpg)  
 The projection between fisheye and sphere is shown below. 
 
 ![fisheye2sphere_eq](/Theory\Theory_img\dewarp\fisheye2sphere_eq.jpg)
