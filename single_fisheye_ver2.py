@@ -8,6 +8,7 @@ def single_fisheye(PathIn, center, radius, aperture, out_pixel):
      # read fisheye image
     ## shape of 'img' array = N×N×3 (row×col×channel)
     img = np.array(Image.open(PathIn), np.uint8)
+    print(img.shape)
 
      # error 
     if (img.shape[0] < center[1]):
@@ -50,9 +51,10 @@ def single_fisheye(PathIn, center, radius, aperture, out_pixel):
 
 if __name__ == "__main__":
     start = time.time()
-    result = single_fisheye('./test_image/input.jpg', [1550, 1490], 1520, 190, 400)
+    #result = single_fisheye('./Theory/Theory_img/1024px_Car_Fisheye.jpg', [1550, 1490], 1520, 190, 400)
+    result = single_fisheye('./Theory/Theory_img/1024px_Car_Fisheye.jpg', [513, 497], 483, 190, 400)
     end = time.time() - start
     print("single fisheye image: %d sec" %end)
 
 
-    Image.fromarray(result).save("./output2.jpg")
+    Image.fromarray(result).save("./car.jpg")
