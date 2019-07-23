@@ -1,5 +1,5 @@
-(Index)
 # Dewarp Fisheye Image.
+[TOC]
 
 ## Fisheye Image has Distortion
 <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/Car_Fisheye.jpg/294px-Car_Fisheye.jpg"  width="40%"> <img src="Theory_img/dewarp/car_dewarp.jpg"  width="40%">
@@ -12,8 +12,7 @@ The original fisheye image is circular shape but, we want to dewarp it into rect
 The goal of this document is understand how to convert fisheye image to dewarpped image.
 
 
-<center><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Barrel_distortion.svg/150px-Barrel_distortion.svg.png"  width="30%"></center> 
-
+<center><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Barrel_distortion.svg/150px-Barrel_distortion.svg.png"  width="35%"></center><br>
 
 cf) dewarpped fisheye image  has **Barrel distortion**.
 
@@ -34,32 +33,47 @@ There are two way to generate dewarpped fisheye image.
 ### fisheye(uv) → spherical(xyz)
 fisheye image is a kind of sphere's projection image. So, from fisheye image we can imagine a sphere which has fisheye image as a surface.
 
-<center><img src="Theory_img/dewarp/fisheye2spherical.jpg" width="60%"></center
+<center><img src="Theory_img/dewarp/fisheye2spherical.jpg" width="60%"></center><br>
 
 The projection between fisheye and sphere is shown below. 
 
-<center><img src="Theory_img/dewarp/fisheye2sphere_eq.jpg"  width="60%"></center>
+<center><img src="Theory_img/dewarp/fisheye2sphere_eq.jpg"  width="60%"></center><br>
 
-### spherical(xyz) → longitude/latitude
+### spherical(xyz) → longitude/latitude(x''y'')
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Equirectangular_projection_SW.jpg/600px-Equirectangular_projection_SW.jpg"  width="60%"><br>
 In this time, transfer the pixel in the spehre to longitude/latitude coordinate, like world map.
 
-<img src="Theory_img/dewarp/sphere.jpg"  width="40%"><br>
+<img src="Theory_img/dewarp/spherical2equirect.jpg"  width="80%"><br>
 
-<img src="Theory_img/dewarp/equirect_map.jpg"  width="40%"><br>
+<img src="Theory_img/dewarp/sphere2equirect.jpg" width="80%">
 
-<img src="Theory_img/dewarp/sphere2equirect.jpg" width="60">
-
-But, if you construct your code in this way, there's must be some **black dot areas** that cannot fullly match to fisheye image to longitude/latitude map.  
+But, if you construct your code in this way, there's must be some **black dot areas** that wasn't match from fisheye image.  
 
 Because, **it's impossible to make a squre which has equal-area with a circle.** (cf. it is also applied in discret world)
 
-<img src="Theory_img/dewarp/forward_dewarp.jpg" width="50">
+<img src="Theory_img/dewarp/forward_dewarp.jpg" width="60%">
 
 ## longitude/latitude → spherical → fisheye
+Due to problem of above method, this time, we will try the inverse way.
+
+### longitude/latitdue(x''y'') → spherical(xyz)
+<img src="Theory_img/dewarp/equirect2spherical.jpg" width="60%"><br>
+<img src="Theory_img/dewarp/equirect2spherical_eq.jpg" width="70%"><br>
+(R is 'one' if it is an unit sphere.)
+
+### spherical(xyz) → fisheye(uv)
+<img src="Theory_img/dewarp/spherical2fisheye.jpg" width="70%"><br>
+(aperture is radian)
+
+In this way, there's no unmatched pixel in the long/lat image.  
+<img src="Theory_img/dewarp/car_dewarp.jpg"  width="60%">
 
 ## Lens Infromation
+Before we process our fisheye image, we necessarily know the Lens informations.
 
+- Center of Lens
+- Radius
+- Aperture
 
 
 ## references
