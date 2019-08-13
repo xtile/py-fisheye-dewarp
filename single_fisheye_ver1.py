@@ -43,7 +43,6 @@ def single_fisheye(PathIn, center, radius, aperture, out_pixel):
                 ## u axis = x axis / v axis = z axis
                 x = j-center[0]
                 z = i-center[1]
-                
                 y = math.sqrt(radius**2-(x**2+z**2))
                 
                 # spherical(xyz) → equirect(longitude/latitude)
