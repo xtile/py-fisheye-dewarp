@@ -71,7 +71,7 @@ Due to the problem of the above method, this time, we will try the inverse way.
 In this way, there's no unmatched pixel in the long/lat image.  
 <img src="Theory_img/dewarp/car_dewarp.jpg"  width="80%">
 
-## Lens Infromation
+## Lens Information
 Before we process our fisheye image, we necessarily know the Lens information.
 
 - Center of Lens

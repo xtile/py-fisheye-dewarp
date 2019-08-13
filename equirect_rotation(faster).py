@@ -21,9 +21,9 @@ def rotation(src, rotation):
     print(src.shape)
     k=0
 
-    log = (()/src.shape[1]-1.0)*math.pi
-    lat = (0.5 - i/src.shape[0])*math.pi
-    LongLat = np.array()
+    #log = (j/src.shape[1]-1.0)*math.pi
+    #lat = (0.5 - i/src.shape[0])*math.pi
+    #LongLat = np.array()
 
 
     for i in range(src.shape[0]):

@@ -70,7 +70,7 @@ fisheye 이미지에서 spherical 좌표계로 변환하는 방법은 아래와 
 
 <img src="Theory_img/dewarp/car_dewarp.jpg"  width="80%">
 
-## Lens Infromation
+## Lens Information
 fisheye 이미지를 가공하기 전에 미리 알아야 하는 정보가 있다.   
 - 렌즈의 중심(Center of Lens)
 - fisheye 이미지 반지름(Radius)
