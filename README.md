@@ -20,5 +20,9 @@ dewarp one single fisheye image.
 dewarp one single fisheye image with down-sampling.
 
 ### equirect_rotation.py
+rotate an equirectagnular image.
+**efficiency** - 1024 x 512 image => 1.8 sec (intel Core i7)
+
+### equirect_rotation(slow).py
 rotate an equirectangular image.  
 **efficiency** - 1024 x 512 image => 9~10 sec (intel Core i7)
