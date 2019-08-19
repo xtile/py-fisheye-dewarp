@@ -3,6 +3,7 @@ import numpy as np
 from PIL import Image
 import math
 
+
 def Rot_Matrix(rotation, unit='degree'):
     rotation = np.array(rotation, dtype=float)
 
@@ -23,11 +24,11 @@ def Rot_Matrix(rotation, unit='degree'):
 
 def Pixel2LonLat(equirect):
     # LongLat - shape = (N, 2N, (Long, Lat)) 
-    Lon = np.array([2*(x/8-0.5)*math.pi for x in range(8)])
-    Lat = np.array([(0.5-y/4)*math.pi for y in range(4)])
+    Lon = np.array([2*(x/equirect.shape[1]-0.5)*math.pi for x in range(equirect.shape[1])])
+    Lat = np.array([(0.5-y/equirect.shape[0])*math.pi for y in range(equirect.shape[0])])
         
-    Lon = np.tile(Lon, (4, 1))
-    Lat = np.tile(Lat.reshape(4, 1), (8))
+    Lon = np.tile(Lon, (equirect.shape[0], 1))
+    Lat = np.tile(Lat.reshape(equirect.shape[0], 1), (equirect.shape[1]))
 
     LonLat = np.dstack((Lon, Lat))
     return LonLat
@@ -41,17 +42,19 @@ def LonLat2Sphere(LonLat):
     return xyz
 
 def Sphere2LonLat(xyz):
-    Lon = math.pi/2 - np.arccos(xyz[:, :, 2])
-    Lat = np.arctan(xyz[:, :, 1], xyz[:, :, 0])
+    Lon = np.arctan2(xyz[:, :, 1], xyz[:, :, 0])
+    Lat = math.pi/2 - np.arccos(xyz[:, :, 2])
 
     LonLat = np.dstack((Lon, Lat))
     return LonLat
 
-def LonLat2Pixel(LonLat, width, height):
-    j = int(width*(LonLat[:, :, 0]/(2*math.pi)+0.5))%width
-    i = int(height*(0.5-(LonLat[:, :, 1]/math.pi)))%height
-    
-    ij = np.dstack((i, j))
+def LonLat2Pixel(LonLat):
+    width = LonLat.shape[1]
+    height = LonLat.shape[0]
+    j = (width*(LonLat[:, :, 0]/(2*np.pi)+0.5))%width
+    i = (height*(0.5-(LonLat[:, :, 1]/np.pi)))%height
+
+    ij = np.dstack((i, j)).astype('int')
     return ij
 
 
@@ -67,17 +70,19 @@ def Rot_Equirect(src, rotation):
     out_LonLat = Pixel2LonLat(out)
     out_xyz = LonLat2Sphere(out_LonLat)
 
-    src_xyz = np.matmul(np.transpose(R), out_xyz[:, :]) #여기가 문제
+    src_xyz = np.zeros_like(out_xyz)
+    for i in range(out_xyz.shape[0]):
+        for j in range(out_xyz.shape[1]):
+            src_xyz[i][j] = np.matmul(np.transpose(R), out_xyz[i][j])
+
     src_LonLat = Sphere2LonLat(src_xyz)
     src_Pixel = LonLat2Pixel(src_LonLat)
-
     for i in range(src.shape[0]):
         for j in range(src.shape[1]):
             pixel = src_Pixel[i][j]
-            out[i][j]=src[pixel[1]][pixel[0]]
-
+             out[i][j]=src[pixel[0]][pixel[1]]
+    
     return out
-
 
 if __name__ == "__main__":
     start = time.time()
@@ -86,3 +91,4 @@ if __name__ == "__main__":
     print(time.time()-start)
     Image.fromarray(out).save(sys.argv[5])
 
+# python euiqrect_rotate_fast.py img X Y Z out
