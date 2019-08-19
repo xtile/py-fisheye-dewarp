@@ -80,7 +80,10 @@ def Rot_Equirect(src, rotation):
     for i in range(src.shape[0]):
         for j in range(src.shape[1]):
             pixel = src_Pixel[i][j]
-             out[i][j]=src[pixel[0]][pixel[1]]
+            try:
+                out[i][j]=src[pixel[0]][pixel[1]]
+            except:
+                print(i, j, pixel)
     
     return out
 
