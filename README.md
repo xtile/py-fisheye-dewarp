@@ -34,6 +34,6 @@ rotate an equirectangular image. (using `for` loops)
 **efficiency**
 - 1024 x 512 image => 9~10 sec (intel Core i7)
 
-cf) Someone coded C++ equirectangular rotator  
+cf) Someone coded **C++ equirectangular rotator**  
 <https://github.com/whdlgp/Equirectangular_rotate>  
 But, my python code is little bit faster :)  
