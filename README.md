@@ -25,16 +25,15 @@ dewarp one single fisheye image with down-sampling.
 ### equirect_rotation.py
 rotate an equirectagnular image.  
 **efficiency**
-- 1024 x 512 image => 1.8 sec (intel Core i7 + GPU)
+- 1024 x 512 image => 1.8 sec (intel Core i7)
 - 1024 x 512 image => 15.5 sec (intel Core i3)
-- 2048 x 1024 image => 7.5 sec (intel Core i7 + GPU)
-(I'm not sure I really use GPU)
+- 2048 x 1024 image => 7.5 sec (intel Core i7)
 
 ### equirect_rotation(slow).py
 rotate an equirectangular image. (using `for` loops)  
-**efficiency** - 1024 x 512 image => 9~10 sec (intel Core i7 + GPU)
-(I'm not sure I really use GPU)
+**efficiency**
+- 1024 x 512 image => 9~10 sec (intel Core i7)
 
 cf) Someone coded C++ equirectangular rotator  
 <https://github.com/whdlgp/Equirectangular_rotate>  
-But, my python code is much faster :)  
+But, my python code is little bit faster :)  
