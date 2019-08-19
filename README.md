@@ -1,8 +1,11 @@
 # py-fisheye-dewarp
 
 ## requirement
+- python 3
+
 - numpy
 - scipy
+- opencv
 
 
 ## description
